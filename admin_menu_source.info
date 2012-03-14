@@ -1,0 +1,4 @@
+name = Administration menu
+description = Use a different menu as the Administration Menu.
+package = Administration
+core = 7.x
