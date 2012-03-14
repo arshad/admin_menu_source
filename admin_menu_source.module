@@ -4,3 +4,44 @@
  * @file
  * Use a different menu as the Administration Menu.
  */
+
+/**
+ * Implements hook_menu().
+ */
+function admin_menu_source_menu() {
+  $items = array();
+  
+  $items['admin/config/administration/admin_menu/settings'] = array(
+    'title' => 'Settings',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  
+  $items['admin/config/administration/admin_menu/source'] = array(
+    'title' => 'Source',
+    'description' => 'Configure the source for the administration menu.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('admin_menu_source_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'admin_menu_source.inc',
+  );
+  
+  return $items;
+}
+
+/**
+ * Implements hook_admin_menu_output_alter().
+ */
+function admin_menu_source_admin_menu_output_alter(&$content) {
+  global $user;
+  
+  $rid = key(array_reverse($user->roles, TRUE));
+  $source_menu = _admin_menu_source_get_role_menu($rid);
+  
+  if (!empty($source_menu)) {
+    $content['menu'] = admin_menu_links_menu(admin_menu_tree($source_menu));
+    $content['menu']['#theme'] = 'admin_menu_links';
+    $content['menu']['#weight'] = 0;
+    $content['menu']['#sorted'] = TRUE;
+  }
+}
