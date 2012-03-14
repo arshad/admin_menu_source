@@ -9,21 +9,21 @@ function admin_menu_source_settings() {
   $roles = user_roles();
   $menus = menu_get_menus();
   $default_values = _admin_menu_source_get_settings();
+  $form['#theme'] = 'admin_menu_source_settings_form';
   
   $form['admin_menu_source_settings'] = array(
     '#tree' => TRUE,
-    '#type' => 'fieldset',
     '#title' => t('Menu source per role'),
   );
   
   foreach ($roles as $rid => $role) {
-    $form['admin_menu_source_settings']['admin_menu_source_role_' . $rid] = array(
+    $form['admin_menu_source_settings'][$rid]['role'] = array(
       '#markup' => $role
     );
-    $form['admin_menu_source_settings']['admin_menu_source_role_menu_' . $rid] = array(
+    $form['admin_menu_source_settings'][$rid]['source'] = array(
       '#type' => 'select',
       '#options' => array('' => t('Default')) + $menus,
-      '#default_value' => isset($default_values['admin_menu_source_role_menu_' . $rid]) ? $default_values['admin_menu_source_role_menu_' . $rid] : '',
+      '#default_value' => isset($default_values[$rid]['source']) ? $default_values[$rid]['source'] : '',
     );
   }
   
