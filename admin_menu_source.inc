@@ -23,7 +23,7 @@ function admin_menu_source_settings() {
     $form['admin_menu_source_settings']['admin_menu_source_role_menu_' . $rid] = array(
       '#type' => 'select',
       '#options' => array('' => t('Default')) + $menus,
-      '#default_value' => $default_values['admin_menu_source_role_menu_' . $rid],
+      '#default_value' => isset($default_values['admin_menu_source_role_menu_' . $rid]) ? $default_values['admin_menu_source_role_menu_' . $rid] : '',
     );
   }
   
