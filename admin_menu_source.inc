@@ -37,23 +37,3 @@ function admin_menu_source_settings_submit() {
   //flush admin_menu's cache
   admin_menu_flush_caches();
 }
-
-/**
- * Helper function to get settings for admin_menu_source
- */
-function _admin_menu_source_get_settings() {
-  return variable_get('admin_menu_source_settings', array());
-}
-
-/**
- * Helper function to get source menu per role
- *
- * @param $rid
- *  the user role id
- */
-function _admin_menu_source_get_role_menu($rid) {
-  //load the settings
-  $settings = _admin_menu_source_get_settings();
-  
-  return $settings['admin_menu_source_role_menu_' . $rid];
-}
