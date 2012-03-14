@@ -6,6 +6,16 @@
  */
 
 /**
+ * Implements hook_help().
+ */
+function admin_menu_source_help($path, $arg) {
+  switch ($path) {
+    case 'admin/config/administration/admin_menu/source':
+      return '<p>' . t('Set the source menu for the Administration menu per role.') . '</p>';
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function admin_menu_source_menu() {
