@@ -1,4 +1,5 @@
-name = Administration menu Source
+name = Administration Menu Source
 description = Use a different menu as the Administration Menu.
 package = Administration
 core = 7.x
+configure = admin/config/administration/admin_menu/source
