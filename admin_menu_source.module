@@ -68,7 +68,7 @@ function admin_menu_source_admin_menu_output_alter(&$content) {
 }
 
 /**
- * Returns HTML for a forum form.
+ * Returns HTML for a settings form.
  *
  * @param $variables
  *   An associative array containing:
