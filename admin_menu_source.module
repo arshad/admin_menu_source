@@ -56,7 +56,14 @@ function admin_menu_source_theme() {
 function admin_menu_source_admin_menu_output_alter(&$content) {
   global $user;
   
-  $rid = key(array_reverse($user->roles, TRUE));
+  // $rid = key(array_reverse($user->roles, TRUE));
+
+  // find the user role rid
+  $roles_ids = array_keys(user_roles());
+  $user_roles_ids = array_keys($user->roles);
+  $user_roles = array_reverse(array_intersect($roles_ids, $user_roles_ids));
+  $rid = $user_roles[0];
+
   $source_menu = _admin_menu_source_get_role_menu($rid);
   
   if (!empty($source_menu)) {
