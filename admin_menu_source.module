@@ -59,7 +59,7 @@ function admin_menu_source_admin_menu_output_alter(&$content) {
   // $rid = key(array_reverse($user->roles, TRUE));
 
   // find the user role rid
-  $roles_ids = array_keys(user_roles());
+  $roles_ids = array_keys(user_roles(TRUE, 'access administration menu'));
   $user_roles_ids = array_keys($user->roles);
   $user_roles = array_reverse(array_intersect($roles_ids, $user_roles_ids));
   $rid = $user_roles[0];
