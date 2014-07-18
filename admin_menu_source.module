@@ -61,15 +61,17 @@ function admin_menu_source_admin_menu_output_alter(&$content) {
   $roles_ids = array_keys(user_roles(TRUE, 'access administration menu'));
   $user_roles_ids = array_keys($user->roles);
   $user_roles = array_reverse(array_intersect($roles_ids, $user_roles_ids));
-  $rid = $user_roles[0];
 
-  $source_menu = _admin_menu_source_get_role_menu($rid);
-  
-  if (!empty($source_menu)) {
-    $content['menu'] = admin_menu_links_menu(admin_menu_tree($source_menu));
-    $content['menu']['#theme'] = 'admin_menu_links';
-    $content['menu']['#weight'] = 0;
-    $content['menu']['#sorted'] = TRUE;
+  if (count($user_roles)) {
+    $rid = $user_roles[0];
+    $source_menu = _admin_menu_source_get_role_menu($rid);
+
+    if (!empty($source_menu)) {
+      $content['menu'] = admin_menu_links_menu(admin_menu_tree($source_menu));
+      $content['menu']['#theme'] = 'admin_menu_links';
+      $content['menu']['#weight'] = 0;
+      $content['menu']['#sorted'] = TRUE;
+    }
   }
 }
 
